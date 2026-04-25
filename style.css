@@ -6,46 +6,13 @@ body {
     text-align: center;
 }
 
+/* Container */
 .container {
     margin-top: 80px;
     padding: 20px;
 }
 
-h1 {
-    font-size: 28px;
-}
-
-p {
-    color: #94a3b8;
-}
-
-button {
-    width: 80%;
-    max-width: 250px;
-    padding: 14px;
-    margin: 10px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
-.card {
-    width: 90%;
-    margin: 15px auto;
-    padding: 20px;
-    border-radius: 15px;
-    background: #111827;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
-/* ===== INDEX PAGE UPGRADE ===== */
-
+/* Titles */
 .logo {
     font-size: 32px;
     margin-top: 20px;
@@ -61,14 +28,57 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.main-card {
-    background: #0f172a;
-    border: 1px solid rgba(255,255,255,0.05);
+/* Buttons */
+button {
+    width: 90%;
+    max-width: 250px;
+    padding: 14px;
+    margin: 10px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.main-btn {
+button:hover {
+    opacity: 0.9;
+}
+
+/* Cards (dashboard & signals) */
+.card {
     width: 90%;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background: #111827;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* ===== HOME FEATURES GRID ===== */
+
+.features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
     padding: 15px;
-    margin: 10px auto;
-    font-size: 16px;
+}
+
+.feature-box {
+    background: #0f172a;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px;
+}
+
+.feature-box h3 {
+    margin: 0 0 5px 0;
+}
+
+.feature-box p {
+    color: #94a3b8;
+    font-size: 13px;
 }
