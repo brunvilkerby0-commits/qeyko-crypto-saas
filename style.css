@@ -6,6 +6,30 @@ body {
     text-align: center;
 }
 
+/* ===== LOGIN CENTER ===== */
+.login-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 90%;
+    max-width: 300px;
+}
+
+/* INPUT STYLE */
+input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
 /* Container */
 .container {
     margin-top: 80px;
@@ -18,14 +42,8 @@ body {
     margin-top: 20px;
 }
 
-.title {
-    font-size: 22px;
-    margin: 5px 0;
-}
-
 .subtitle {
     color: #94a3b8;
-    margin-bottom: 20px;
 }
 
 /* Buttons */
@@ -46,7 +64,7 @@ button:hover {
     opacity: 0.9;
 }
 
-/* Cards (dashboard & signals) */
+/* Cards */
 .card {
     width: 90%;
     margin: 15px auto;
@@ -56,8 +74,7 @@ button:hover {
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
-/* ===== HOME FEATURES GRID ===== */
-
+/* FEATURES GRID */
 .features {
     display: grid;
     grid-template-columns: 1fr 1fr;
