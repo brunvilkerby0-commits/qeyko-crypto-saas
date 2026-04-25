@@ -6,24 +6,26 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-.signal-buy {
-    background: rgba(0,255,100,0.1);
-    color: lime;
-    padding: 8px;
-    border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 10px;
+.top-signals {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px;
+}
+
+.signal {
+    padding: 10px 15px;
+    border-radius: 10px;
     font-weight: bold;
 }
 
-.signal-sell {
+.buy {
+    background: rgba(0,255,100,0.1);
+    color: lime;
+}
+
+.sell {
     background: rgba(255,0,0,0.1);
     color: red;
-    padding: 8px;
-    border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 10px;
-    font-weight: bold;
 }
 </style>
 
@@ -33,7 +35,13 @@
 
 <h1>📊 Crypto Dashboard</h1>
 
-<!-- PRICE CARDS -->
+<!-- GLOBAL SIGNALS -->
+<div class="top-signals">
+    <div class="signal buy">BTC → <span id="btcSignal"></span></div>
+    <div class="signal sell">ETH → <span id="ethSignal"></span></div>
+</div>
+
+<!-- PRICE -->
 <div class="card">
     <h2>Bitcoin (BTC)</h2>
     <p id="btc">$ ---</p>
@@ -44,11 +52,9 @@
     <p id="eth">$ ---</p>
 </div>
 
-<!-- BTC -->
+<!-- BTC CHART -->
 <div class="card">
     <h2>📈 BTC Chart</h2>
-
-    <div class="signal-buy">🟢 BUY SIGNAL</div>
 
     <iframe 
         src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=1&theme=dark"
@@ -58,11 +64,9 @@
 
 </div>
 
-<!-- ETH -->
+<!-- ETH CHART -->
 <div class="card">
     <h2>📉 ETH Chart</h2>
-
-    <div class="signal-sell">🔴 SELL SIGNAL</div>
 
     <iframe 
         src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:ETHUSDT&interval=1&theme=dark"
@@ -72,7 +76,6 @@
 
 </div>
 
-<!-- BACK -->
 <a href="index.html">
 <button>⬅ Back</button>
 </a>
