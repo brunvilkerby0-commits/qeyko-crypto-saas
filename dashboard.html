@@ -4,6 +4,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard</title>
 <link rel="stylesheet" href="style.css">
+
+<style>
+.signal-buy {
+    background: rgba(0,255,100,0.1);
+    color: lime;
+    padding: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.signal-sell {
+    background: rgba(255,0,0,0.1);
+    color: red;
+    padding: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+</style>
+
 </head>
 
 <body>
@@ -21,33 +44,35 @@
     <p id="eth">$ ---</p>
 </div>
 
-<!-- BTC CHART -->
+<!-- BTC -->
 <div class="card">
     <h2>📈 BTC Chart</h2>
+
+    <div class="signal-buy">🟢 BUY SIGNAL</div>
 
     <iframe 
         src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=1&theme=dark"
         width="100%" 
-        height="300" 
-        frameborder="0">
+        height="300">
     </iframe>
 
 </div>
 
-<!-- ETH CHART -->
+<!-- ETH -->
 <div class="card">
     <h2>📉 ETH Chart</h2>
+
+    <div class="signal-sell">🔴 SELL SIGNAL</div>
 
     <iframe 
         src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:ETHUSDT&interval=1&theme=dark"
         width="100%" 
-        height="300" 
-        frameborder="0">
+        height="300">
     </iframe>
 
 </div>
 
-<!-- BACK BUTTON -->
+<!-- BACK -->
 <a href="index.html">
 <button>⬅ Back</button>
 </a>
