@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +38,18 @@
 
 <!-- GLOBAL SIGNALS -->
 <div class="top-signals">
-    <div class="signal buy">BTC → <span id="btcSignal"></span></div>
-    <div class="signal sell">ETH → <span id="ethSignal"></span></div>
+    <div class="signal buy">BTC → <span id="btcSignal">---</span></div>
+    <div class="signal sell">ETH → <span id="ethSignal">---</span></div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="card">
+    <h2>⚙️ Admin Signal Panel</h2>
+
+    <p>Proposed BTC: <span id="btcProposed">---</span></p>
+
+    <button onclick="generateSignal()">⚡ Generate</button>
+    <button onclick="validateSignal()">✅ Validate</button>
 </div>
 
 <!-- PRICE -->
