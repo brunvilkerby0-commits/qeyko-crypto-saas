@@ -18,6 +18,11 @@ function login() {
     let user = document.getElementById("username")?.value;
     let pass = document.getElementById("password")?.value;
 
+    if(!user || !pass){
+        alert("Fill all fields");
+        return;
+    }
+
     let savedUser = localStorage.getItem("user");
     let savedPass = localStorage.getItem("pass");
 
@@ -29,41 +34,37 @@ function login() {
     }
 }
 
-// CHECK login
-
+// ===== CHECK LOGIN (PA BLOKE LOGIN PAGE) =====
 if (
     window.location.pathname.includes("dashboard.html") ||
     window.location.pathname.includes("index.html")
-) {
+){
     let logged = localStorage.getItem("logged");
 
-    if (logged !== "true") {
+    if(logged !== "true"){
         window.location.href = "login.html";
-    
-// LOGOUT
+    }
+}
+
+// ===== LOGOUT =====
 function logout(){
     localStorage.removeItem("logged");
     window.location.href = "login.html";
 }
 
-// ===== PREMIUM SYSTEM =====
+// ===== PREMIUM =====
 function checkPremium(){
     let isPremium = localStorage.getItem("premium") === "true";
 
     let btc = document.getElementById("btcSignal");
     let eth = document.getElementById("ethSignal");
 
-    let msgBTC = document.getElementById("premiumMsgBTC");
-    let msgETH = document.getElementById("premiumMsgETH");
-
     if(!isPremium){
         if(btc) btc.innerText = "🔒 Locked";
         if(eth) eth.innerText = "🔒 Locked";
-
-        if(msgBTC) msgBTC.innerText = " (Upgrade to Premium)";
-        if(msgETH) msgETH.innerText = " (Upgrade to Premium)";
     }
 }
+
 // ===== SIGNAL SYSTEM =====
 let proposedBTC = "";
 
@@ -84,5 +85,7 @@ function validateSignal(){
     }
 }
 
-// RUN CHECK
-checkPremium();
+// ===== SAFE RUN =====
+if(document.getElementById("btcSignal")){
+    checkPremium();
+}
