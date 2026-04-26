@@ -1,10 +1,10 @@
 // ===== LOGIN SYSTEM =====
 
 function register() {
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
+    let user = document.getElementById("username")?.value;
+    let pass = document.getElementById("password")?.value;
 
-    if(user === "" || pass === ""){
+    if(!user || !pass){
         alert("Fill all fields");
         return;
     }
@@ -16,8 +16,8 @@ function register() {
 }
 
 function login() {
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
+    let user = document.getElementById("username")?.value;
+    let pass = document.getElementById("password")?.value;
 
     let savedUser = localStorage.getItem("user");
     let savedPass = localStorage.getItem("pass");
@@ -30,10 +30,9 @@ function login() {
     }
 }
 
-// ===== CHECK LOGIN =====
-
+// CHECK LOGIN
 if(window.location.pathname.includes("index.html") || 
-   window.location.pathname === "/"){
+   window.location.pathname.includes("dashboard.html")){
 
     let logged = localStorage.getItem("logged");
 
@@ -42,29 +41,27 @@ if(window.location.pathname.includes("index.html") ||
     }
 }
 
-// ===== LOGOUT =====
-
+// LOGOUT
 function logout(){
     localStorage.removeItem("logged");
     window.location.href = "login.html";
 }
 
-// ===== AUTO SIGNAL =====
+// ===== SIGNAL SYSTEM =====
 
-function randomSignal() {
+let proposedBTC = "";
+
+function generateSignal(){
     const signals = ["BUY 📈", "SELL 📉"];
-    return signals[Math.floor(Math.random() * signals.length)];
+    proposedBTC = signals[Math.floor(Math.random() * signals.length)];
+
+    let el = document.getElementById("btcProposed");
+    if(el) el.innerText = proposedBTC;
 }
 
-function updateSignals() {
-    let btc = document.getElementById("btcSignal");
-    let eth = document.getElementById("ethSignal");
-
-    if(btc && eth){
-        btc.innerText = randomSignal();
-        eth.innerText = randomSignal();
+function validateSignal(){
+    if(proposedBTC !== ""){
+        let el = document.getElementById("btcSignal");
+        if(el) el.innerText = proposedBTC;
     }
 }
-
-setInterval(updateSignals, 5000);
-updateSignals();
