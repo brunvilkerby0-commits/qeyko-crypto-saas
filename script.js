@@ -1,5 +1,4 @@
-// ===== LOGIN SYSTEM =====
-
+// ===== LOGIN =====
 function register() {
     let user = document.getElementById("username")?.value;
     let pass = document.getElementById("password")?.value;
@@ -33,9 +32,7 @@ function login() {
 // CHECK LOGIN
 if(window.location.pathname.includes("index.html") || 
    window.location.pathname.includes("dashboard.html")){
-
     let logged = localStorage.getItem("logged");
-
     if(logged !== "true"){
         window.location.href = "login.html";
     }
@@ -47,8 +44,26 @@ function logout(){
     window.location.href = "login.html";
 }
 
-// ===== SIGNAL SYSTEM =====
+// ===== PREMIUM SYSTEM =====
+function checkPremium(){
+    let isPremium = localStorage.getItem("premium") === "true";
 
+    let btc = document.getElementById("btcSignal");
+    let eth = document.getElementById("ethSignal");
+
+    let msgBTC = document.getElementById("premiumMsgBTC");
+    let msgETH = document.getElementById("premiumMsgETH");
+
+    if(!isPremium){
+        if(btc) btc.innerText = "🔒 Locked";
+        if(eth) eth.innerText = "🔒 Locked";
+
+        if(msgBTC) msgBTC.innerText = " (Upgrade to Premium)";
+        if(msgETH) msgETH.innerText = " (Upgrade to Premium)";
+    }
+}
+
+// ===== SIGNAL SYSTEM =====
 let proposedBTC = "";
 
 function generateSignal(){
@@ -60,8 +75,13 @@ function generateSignal(){
 }
 
 function validateSignal(){
-    if(proposedBTC !== ""){
+    let isPremium = localStorage.getItem("premium") === "true";
+
+    if(proposedBTC !== "" && isPremium){
         let el = document.getElementById("btcSignal");
         if(el) el.innerText = proposedBTC;
     }
 }
+
+// RUN CHECK
+checkPremium();
