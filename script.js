@@ -64,7 +64,6 @@ function checkPremium(){
         if(msgETH) msgETH.innerText = " (Upgrade to Premium)";
     }
 }
-
 // ===== SIGNAL SYSTEM =====
 let proposedBTC = "";
 
