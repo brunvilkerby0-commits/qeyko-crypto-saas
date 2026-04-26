@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,10 +35,19 @@
 
 <h1>📊 Crypto Dashboard</h1>
 
-<!-- GLOBAL SIGNALS -->
+<!-- SIGNALS -->
 <div class="top-signals">
-    <div class="signal buy">BTC → <span id="btcSignal">---</span></div>
-    <div class="signal sell">ETH → <span id="ethSignal">---</span></div>
+
+    <div class="signal buy">
+        BTC → <span id="btcSignal">---</span>
+        <span id="premiumMsgBTC"></span>
+    </div>
+
+    <div class="signal sell">
+        ETH → <span id="ethSignal">---</span>
+        <span id="premiumMsgETH"></span>
+    </div>
+
 </div>
 
 <!-- ADMIN PANEL -->
@@ -55,36 +63,30 @@
 <!-- PRICE -->
 <div class="card">
     <h2>Bitcoin (BTC)</h2>
-    <p id="btc">$ ---</p>
+    <p>$ ---</p>
 </div>
 
 <div class="card">
     <h2>Ethereum (ETH)</h2>
-    <p id="eth">$ ---</p>
+    <p>$ ---</p>
 </div>
 
 <!-- BTC CHART -->
 <div class="card">
     <h2>📈 BTC Chart</h2>
-
     <iframe 
         src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=1&theme=dark"
-        width="100%" 
-        height="300">
+        width="100%" height="300">
     </iframe>
-
 </div>
 
 <!-- ETH CHART -->
 <div class="card">
     <h2>📉 ETH Chart</h2>
-
     <iframe 
         src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:ETHUSDT&interval=1&theme=dark"
-        width="100%" 
-        height="300">
+        width="100%" height="300">
     </iframe>
-
 </div>
 
 <a href="index.html">
