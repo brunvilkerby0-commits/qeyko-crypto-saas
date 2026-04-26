@@ -1,3 +1,4 @@
+
 // ===== LOGIN =====
 function register() {
     let user = document.getElementById("username")?.value;
@@ -34,17 +35,18 @@ function login() {
     }
 }
 
-// ===== CHECK LOGIN (PA BLOKE LOGIN PAGE) =====
-if (
-    window.location.pathname.includes("dashboard.html") ||
-    window.location.pathname.includes("index.html")
-){
-    let logged = localStorage.getItem("logged");
+// ===== CHECK LOGIN (FIX LOOP) =====
+(function(){
+    let page = window.location.pathname;
 
-    if(logged !== "true"){
-        window.location.href = "login.html";
+    if(page.includes("dashboard.html") || page.includes("index.html")){
+        let logged = localStorage.getItem("logged");
+
+        if(logged !== "true"){
+            window.location.href = "login.html";
+        }
     }
-}
+})();
 
 // ===== LOGOUT =====
 function logout(){
