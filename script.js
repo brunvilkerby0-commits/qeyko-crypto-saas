@@ -1,9 +1,9 @@
-// REGISTER
+// ===== REGISTER =====
 function register() {
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
+    let user = document.getElementById("username")?.value;
+    let pass = document.getElementById("password")?.value;
 
-    if(user === "" || pass === ""){
+    if(!user || !pass){
         alert("Fill all fields");
         return;
     }
@@ -11,13 +11,13 @@ function register() {
     localStorage.setItem("user", user);
     localStorage.setItem("pass", pass);
 
-    alert("Account created!");
+    alert("Account created ✅");
 }
 
-// LOGIN
+// ===== LOGIN =====
 function login() {
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
+    let user = document.getElementById("username")?.value;
+    let pass = document.getElementById("password")?.value;
 
     let savedUser = localStorage.getItem("user");
     let savedPass = localStorage.getItem("pass");
@@ -26,21 +26,73 @@ function login() {
         localStorage.setItem("logged", "true");
         window.location.href = "index.html";
     } else {
-        alert("Wrong login");
+        alert("Wrong login ❌");
     }
 }
 
-// CHECK LOGIN
-if(window.location.pathname.includes("dashboard.html") ||
-   window.location.pathname.includes("index.html")){
+// ===== CHECK LOGIN =====
+(function(){
+    let page = window.location.pathname;
 
-    if(localStorage.getItem("logged") !== "true"){
-        window.location.href = "login.html";
+    if(page.includes("dashboard.html") || page.includes("index.html")){
+        let logged = localStorage.getItem("logged");
+
+        if(logged !== "true"){
+            window.location.href = "login.html";
+        }
     }
-}
+})();
 
-// LOGOUT
+// ===== LOGOUT =====
 function logout(){
     localStorage.removeItem("logged");
     window.location.href = "login.html";
+}
+
+// ===== PREMIUM =====
+function checkPremium(){
+    let isPremium = localStorage.getItem("premium") === "true";
+
+    let btc = document.getElementById("btcSignal");
+    let eth = document.getElementById("ethSignal");
+
+    if(!isPremium){
+        if(btc) btc.innerText = "🔒 Locked";
+        if(eth) eth.innerText = "🔒 Locked";
+    }
+}
+
+// ===== SIGNAL SYSTEM =====
+let proposedBTC = "";
+
+// GENERATE SIGNAL
+function generateSignal(){
+    const signals = ["BUY 📈", "SELL 📉"];
+    proposedBTC = signals[Math.floor(Math.random() * signals.length)];
+
+    let el = document.getElementById("btcProposed");
+    if(el) el.innerText = proposedBTC;
+
+    alert("Signal generated ⚡");
+}
+
+// VALIDATE SIGNAL (FIXED)
+function validateSignal(){
+    if(proposedBTC === ""){
+        alert("Generate signal first ⚠️");
+        return;
+    }
+
+    let el = document.getElementById("btcSignal");
+
+    if(el){
+        el.innerText = proposedBTC;
+    }
+
+    alert("Signal validated ✅");
+}
+
+// ===== SAFE RUN =====
+if(document.getElementById("btcSignal")){
+    checkPremium();
 }
