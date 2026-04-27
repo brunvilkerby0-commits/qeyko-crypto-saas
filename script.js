@@ -1,98 +1,78 @@
-// ===== REGISTER =====
-function register() {
-    let user = document.getElementById("username")?.value;
-    let pass = document.getElementById("password")?.value;
+// ===== PREMIUM SYSTEM (FULL) =====
 
-    if(!user || !pass){
-        alert("Fill all fields");
-        return;
-    }
-
-    localStorage.setItem("user", user);
-    localStorage.setItem("pass", pass);
-
-    alert("Account created ✅");
+// CHECK SI USER PREMIUM
+function isUserPremium(){
+    return localStorage.getItem("premium") === "true";
 }
 
-// ===== LOGIN =====
-function login() {
-    let user = document.getElementById("username")?.value;
-    let pass = document.getElementById("password")?.value;
-
-    let savedUser = localStorage.getItem("user");
-    let savedPass = localStorage.getItem("pass");
-
-    if(user === savedUser && pass === savedPass){
-        localStorage.setItem("logged", "true");
-        window.location.href = "index.html";
-    } else {
-        alert("Wrong login ❌");
-    }
+// AKTIVE PREMIUM (ADMIN)
+function activatePremium(){
+    localStorage.setItem("premium", "true");
+    alert("Premium activated ✅");
+    location.reload();
 }
 
-// ===== CHECK LOGIN =====
-(function(){
-    let page = window.location.pathname;
-
-    if(page.includes("dashboard.html") || page.includes("index.html")){
-        let logged = localStorage.getItem("logged");
-
-        if(logged !== "true"){
-            window.location.href = "login.html";
-        }
-    }
-})();
-
-// ===== LOGOUT =====
-function logout(){
-    localStorage.removeItem("logged");
-    window.location.href = "login.html";
+// RETIRE PREMIUM (ADMIN)
+function removePremium(){
+    localStorage.setItem("premium", "false");
+    alert("Premium removed ❌");
+    location.reload();
 }
 
-// ===== PREMIUM =====
-function checkPremium(){
-    let isPremium = localStorage.getItem("premium") === "true";
+// BLOKE OU OUVRI SIGNAL
+function updateSignalsDisplay(){
+    let premium = isUserPremium();
 
     let btc = document.getElementById("btcSignal");
     let eth = document.getElementById("ethSignal");
 
-    if(!isPremium){
+    let msgBTC = document.getElementById("premiumMsgBTC");
+    let msgETH = document.getElementById("premiumMsgETH");
+
+    if(!premium){
         if(btc) btc.innerText = "🔒 Locked";
         if(eth) eth.innerText = "🔒 Locked";
+
+        if(msgBTC) msgBTC.innerText = "Upgrade to Premium";
+        if(msgETH) msgETH.innerText = "Upgrade to Premium";
     }
 }
 
-// ===== SIGNAL SYSTEM =====
+// ===== SIGNAL SYSTEM (BTC + ETH) =====
 let proposedBTC = "";
+let proposedETH = "";
 
-// GENERATE SIGNAL
 function generateSignal(){
     const signals = ["BUY 📈", "SELL 📉"];
+
     proposedBTC = signals[Math.floor(Math.random() * signals.length)];
+    proposedETH = signals[Math.floor(Math.random() * signals.length)];
 
-    let el = document.getElementById("btcProposed");
-    if(el) el.innerText = proposedBTC;
+    let btcP = document.getElementById("btcProposed");
+    let ethP = document.getElementById("ethProposed");
 
-    alert("Signal generated ⚡");
+    if(btcP) btcP.innerText = proposedBTC;
+    if(ethP) ethP.innerText = proposedETH;
+
+    alert("Signals generated ⚡");
 }
 
-// VALIDATE SIGNAL (FIXED)
 function validateSignal(){
-    if(proposedBTC === ""){
-        alert("Generate signal first ⚠️");
+    if(proposedBTC === "" || proposedETH === ""){
+        alert("Generate first ⚠️");
         return;
     }
 
-    let el = document.getElementById("btcSignal");
+    let btc = document.getElementById("btcSignal");
+    let eth = document.getElementById("ethSignal");
 
-    if(el){
-        el.innerText = proposedBTC;
-    }
+    if(btc) btc.innerText = proposedBTC;
+    if(eth) eth.innerText = proposedETH;
 
-    alert("Signal validated ✅");
+    alert("Signals validated ✅");
 }
 
-// ===== SAFE RUN =====
+// RUN AUTO
 if(document.getElementById("btcSignal")){
-    checkPremium();
+    updateSignalsDisplay();
 }
