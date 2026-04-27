@@ -27,6 +27,13 @@
     background: rgba(255,0,0,0.1);
     color: red;
 }
+
+.card {
+    background: #111827;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 12px;
+}
 </style>
 
 </head>
@@ -39,13 +46,13 @@
 <div class="top-signals">
 
     <div class="signal buy">
-        BTC → <span id="btcSignal">---</span>
-        <span id="premiumMsgBTC"></span>
+        BTC → <span id="btcSignal">---</span><br>
+        <small id="premiumMsgBTC"></small>
     </div>
 
     <div class="signal sell">
-        ETH → <span id="ethSignal">---</span>
-        <span id="premiumMsgETH"></span>
+        ETH → <span id="ethSignal">---</span><br>
+        <small id="premiumMsgETH"></small>
     </div>
 
 </div>
@@ -89,11 +96,26 @@
     </iframe>
 </div>
 
+<button onclick="logout()">🚪 Logout</button>
+
 <a href="index.html">
 <button>⬅ Back</button>
 </a>
 
 <script src="script.js"></script>
+
+<script>
+// PREMIUM DISPLAY
+let isPremium = localStorage.getItem("premium") === "true";
+
+if(!isPremium){
+    document.getElementById("btcSignal").innerText = "🔒 Locked";
+    document.getElementById("ethSignal").innerText = "🔒 Locked";
+
+    document.getElementById("premiumMsgBTC").innerText = "Premium only";
+    document.getElementById("premiumMsgETH").innerText = "Premium only";
+}
+</script>
 
 </body>
 </html>
