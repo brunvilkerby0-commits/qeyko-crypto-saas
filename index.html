@@ -1,50 +1,71 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QEYKO CRYPTO</title>
+    <title>QEYKO CAPITAL</title>
     <style>
-        body { margin: 0; background: #0a192f; color: white; font-family: sans-serif; }
-        .page { display: none; padding: 20px; padding-bottom: 80px; }
+        body { margin: 0; background: #0a0e17; color: white; font-family: 'Segoe UI', sans-serif; padding-bottom: 80px; }
+        .page { display: none; padding: 20px; }
         .active { display: block; }
-        .card { background: #112240; padding: 20px; border-radius: 12px; border: 1px solid #d4af37; margin-bottom: 15px; }
-        .tab-bar { position: fixed; bottom: 0; width: 100%; height: 60px; background: #0a192f; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #d4af37; }
+        
+        h3 { color: #d4af37; text-align: center; margin-top: 10px; }
+        
+        .card { background: #151a28; padding: 15px; border-radius: 12px; border: 1px solid #2a334d; margin-bottom: 15px; }
+        
+        .signal-card { background: #151a28; padding: 15px; border-radius: 12px; border: 1px solid #2a334d; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .signal-title { font-weight: bold; font-size: 18px; }
+        
+        .action-btn { padding: 8px 20px; border-radius: 8px; font-weight: bold; color: white; font-size: 14px; text-align: center; }
+        .buy-btn { background: linear-gradient(90deg, #00c087, #008f65); }
+        .sell-btn { background: linear-gradient(90deg, #ff4d4d, #b30000); }
+
+        .tab-bar { position: fixed; bottom: 0; width: 100%; height: 60px; background: #0a0e17; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #2a334d; }
         .tab { color: #d4af37; cursor: pointer; text-align: center; font-size: 12px; }
-        .btn { background: #d4af37; color: black; padding: 10px; border-radius: 8px; text-align: center; font-weight: bold; cursor: pointer; }
+        .btn { display:block; text-decoration:none; background:#d4af37; color:#000; padding:12px; border-radius:8px; font-weight:bold; text-align:center; }
     </style>
 </head>
 <body>
 
 <div id="home" class="page active">
-    <h3>📊 Dashboard</h3>
-    <div class="card" id="chart-container" style="height:300px;">
-        </div>
+    <h3>📊 MARCHÉ</h3>
+    <div class="card" id="chart-container" style="height:350px;"></div>
 </div>
 
 <div id="signals" class="page">
-    <h3>🚀 Signaux VIP</h3>
-    <div class="card">
-        <p>1. BTC/USDT Long - Entry: 64k - TP: 66k</p>
-        <p>2. ETH/USDT Short - Entry: 3.1k - TP: 2.9k</p>
+    <h3>🚀 SIGNAUX VIP</h3>
+    <div class="signal-card">
+        <div>
+            <div class="signal-title">BTC / USDT</div>
+            <div style="font-size:12px; color:#aaa; margin-top:5px;">Entrée: 60,300$ | TP: 61,500$</div>
+        </div>
+        <div class="action-btn buy-btn">BUY 📈</div>
+    </div>
+    <div class="signal-card">
+        <div>
+            <div class="signal-title">ETH / USDT</div>
+            <div style="font-size:12px; color:#aaa; margin-top:5px;">Entrée: 3,150$ | TP: 3,050$</div>
+        </div>
+        <div class="action-btn sell-btn">SELL 📉</div>
     </div>
 </div>
 
 <div id="vip" class="page">
-    <h3>💳 Accès VIP</h3>
-    <div class="card">
-        <p>Peman: 10$ USDT (TRC20)</p>
-        <div style="background:#000; padding:10px; font-size:12px;">TUvxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
-        <br>
-        <div class="btn" onclick="alert('Tanpri voye screenshot la!')">J'ai payé</div>
+    <h3>💎 ACCÈS PREMIUM</h3>
+    <div class="card" style="text-align:center;">
+        <p>Recevez 3 signaux quotidiens. Retraits autorisés le samedi.</p>
+        <div style="background:#0a0e17; padding:15px; border-radius:8px; border:1px solid #d4af37; margin: 15px 0;">
+            USDT (TRC20):<br>
+            <span style="word-break: break-all; font-family: monospace;">TUvxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+        </div>
+        <a href="https://t.me/KerbyUsername" class="btn">✅ ACTIVER MON ACCÈS</a>
     </div>
 </div>
 
 <div class="tab-bar">
-    <div class="tab" onclick="show('home')">📊<br>Dashboard</div>
+    <div class="tab" onclick="show('home')">📊<br>Marché</div>
     <div class="tab" onclick="show('signals')">🚀<br>Signaux</div>
-    <div class="tab" onclick="show('vip')">💳<br>VIP</div>
+    <div class="tab" onclick="show('vip')">💎<br>VIP</div>
 </div>
 
 <script>
@@ -52,14 +73,13 @@
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         
-        // Lojik pou chaje/retire grafik la pou l pa lag
         if(pageId === 'home') {
             document.getElementById('chart-container').innerHTML = '<iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?symbol=BINANCE:BTCUSDT&theme=dark" width="100%" height="100%" frameborder="0"></iframe>';
         } else {
-            document.getElementById('chart-container').innerHTML = ''; // Libere memwa
+            document.getElementById('chart-container').innerHTML = '';
         }
     }
-    show('home'); // Chaje dashboard an premye
+    show('home');
 </script>
 </body>
 </html>
